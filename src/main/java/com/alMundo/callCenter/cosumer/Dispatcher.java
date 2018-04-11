@@ -2,8 +2,6 @@ package com.alMundo.callCenter.cosumer;
 
 import com.alMundo.callCenter.model.Call;
 import com.alMundo.callCenter.service.EmployeesService;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +31,7 @@ public class Dispatcher {
             Call call = new ObjectMapper().readValue(((TextMessage) callMessage).getText(), Call.class);
             LOGGER.info("Llamada entrante de '{}'", call.getCustomerName());
             employeesService.assignCallToEmployee(call);
-        } catch (Exception e){
+        } catch (IOException | JMSException  e){
             LOGGER.error("No se puede convertir la llamada.", e);
         }
 

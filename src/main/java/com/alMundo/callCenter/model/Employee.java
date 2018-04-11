@@ -10,10 +10,9 @@ public class Employee implements Comparable<Employee> {
     private String employeeName;
     private EmployeeCategory category;
 
-    public Employee() {
-
+    public Employee(EmployeeCategory category) {
+        this.category = category;
     }
-
 
     public Employee(String name, EmployeeCategory category) {
         this.employeeName = name;
