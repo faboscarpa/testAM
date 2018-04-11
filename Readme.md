@@ -17,3 +17,11 @@ Se plantea una queue de etrada para las llamadas (ActiveMQ) desde donde las lee 
 hay ningún empleado libre:** Para solucionar este problema utilice una PriorityBlockingQueue.La llamada se queda a la espera de que se libere algun operador. Si se cumple un tiempo configurable sin ser atendida la llamada es cortada. 
   - **Dar alguna solución sobre qué pasa con una llamada cuando
 entran más de 10 llamadas concurrentes:** Quedaran encoladas en ActiveMQ hasta que el Dispatcher pueda tomarlas. El consumer actualmente esta configurado con un maximo de 10 concurrencias.  
+
+## Ejecución
+ **Se necesita tener instalado [Docker] y [Docker-compose]
+  - docker-compose build
+  - docker-compose up
+
+[Docker]:https://www.docker.com/
+[Docker-compose]:https://docs.docker.com/compose/
