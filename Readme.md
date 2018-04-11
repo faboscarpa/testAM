@@ -9,11 +9,11 @@ haber tampoco supervisores libres debe ser atendida por un director.
 
 ## Solución
 
-Se plantea una queue de etrada para las llamadas (ActiveMQ) desde donde las lee el Dispatcher(consumer multiThread), este llama a EmployeeService y le asigna un empleado priorizado que retira de una una PriorityBlockingQueue, se simula la ejecucion de la llamada con un thread.sleep() y se redispoibiliza al empledao agregandolo nuevamente a la PriorityQueue. 
+Se plantea una queue de etrada para las llamadas (ActiveMQ) desde donde las lee el Dispatcher(consumer multiThread), este llama a EmployeeService el cual le asigna un empleado priorizado segun el cargo (PriorityBlockingQueue.poll()), se simula la ejecucion de la llamada con un thread.sleep() y se redispoibiliza al empledao(PriorityBlockingQueue.add()). 
 
 ## Extras:
 
   - **Dar alguna solución sobre qué pasa con una llamada cuando no
-hay ningún empleado libre:** Para solucionar este problema utilice una PriorityBloclingQueue, se queda a la espera de que se libere algun operador. Si se cumple un tiempo cobfigurable sin ser atendida la llamada la misma es cortada. 
+hay ningún empleado libre:** Para solucionar este problema utilice una PriorityBlockingQueue.La llamada se queda a la espera de que se libere algun operador. Si se cumple un tiempo configurable sin ser atendida la llamada es cortada. 
   - **Dar alguna solución sobre qué pasa con una llamada cuando
-entran más de 10 llamadas concurrentes:** Quedaran encoladas en ActiveMQ hasta que el Dispatcher pueda tomarlas ya que el consumer esta configurado con un maximo de 10 concurrencias.  
+entran más de 10 llamadas concurrentes:** Quedaran encoladas en ActiveMQ hasta que el Dispatcher pueda tomarlas. El consumer actualmente esta configurado con un maximo de 10 concurrencias.  
